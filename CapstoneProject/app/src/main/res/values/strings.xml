@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">Budget Grocer</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="addItem">Add item</string>
+    <string name="removeItem">Remove item</string>
+    <string name="milk">Milk</string>
+    <string name="zero">0</string>
+    <string name="prompt">Select Unit</string>
+    <string name="done">done!!</string>
+    <string name="find_deals">Find Deals</string>
+    <string name="zip_code">e.g. ZipCode</string>
+    <string-array name="spinner_entries">
+        <item>ct</item>
+        <item>oz</item>
+        <item>lb</item>
+        <item>gm</item>
+        <item>ml</item>
+        <item>gal.</item>
+        <item>qt</item>
+    </string-array>
+
+
+    <string name="product">Milk, 1% Lowfat</string>
+    <string name="store">Kinney Drugs</string>
+    <string name="price">$2.88</string>
+    <string name="Deals">Deals</string>
+    <string name="empty">No deals found.</string>
+    <string name="add_to_list">Add to grocery list</string>
+    <string name="exp_dt">Ends 09/09/17</string>
+    <string name="deals_saved">2 deals saved :</string>
+    <string name="add">ADD</string>
+    <string name="NoDeals">No deals Saved</string>
+    <string name="clear">Clear</string>
+    <string name="appwidget_text">Shopping List</string>
+    <string name="add_widget">Add widget</string>
+</resources>

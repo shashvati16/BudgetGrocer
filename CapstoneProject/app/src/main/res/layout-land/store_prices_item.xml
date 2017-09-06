@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    android:layout_width="150dp"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <LinearLayout android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+        <ImageView
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="4dp"
+            android:id="@+id/deal_imgs"
+            tools:src="@mipmap/ic_sample"
+            android:layout_width="100dp"
+            android:layout_height="100dp" />
+        <TextView
+            android:id="@+id/deal_product"
+            android:layout_marginStart="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="@string/product"/>
+        <TextView
+            android:id="@+id/deal_store"
+            android:layout_marginStart="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="@string/store"/>
+        <TextView
+            android:id="@+id/deal_price"
+            android:layout_marginStart="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="@string/price"/>
+        <TextView
+            android:id="@+id/expiry_dt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="@string/exp_dt"/>
+    </LinearLayout>
+    <ToggleButton
+        android:layout_gravity="top"
+        android:textOn=""
+        android:textOff=""
+        android:background="@drawable/ic_toggle"
+        android:id="@+id/checkDeals"
+        android:layout_width="30dp"
+        android:layout_height="30dp" />
+</FrameLayout>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F0F4C3">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/grocery_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right">
+
+
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/add_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:elevation="@dimen/fab_elevation"
+            android:layout_gravity="bottom|right"
+            android:clickable="true"
+            android:background="#76FF03"
+            app:rippleColor="#69F0AE"
+            android:layout_marginBottom="4dp"
+            app:pressedTranslationZ="@dimen/fab_press_translation_z"
+            android:contentDescription="@string/addItem"
+            android:src="@drawable/ic_if_plus_1646001" />
+    </android.support.design.widget.CoordinatorLayout>
+    </FrameLayout>
+</FrameLayout>
