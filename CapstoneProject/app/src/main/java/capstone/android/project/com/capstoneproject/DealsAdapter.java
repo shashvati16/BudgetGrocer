@@ -162,8 +162,4 @@ public class DealsAdapter extends RecyclerView.Adapter<DealsAdapter.DealsAdapter
             return mDeals.length;
         }
     }
-
-
-
-
 }

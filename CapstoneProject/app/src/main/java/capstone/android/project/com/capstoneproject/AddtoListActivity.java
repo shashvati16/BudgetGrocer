@@ -1,9 +1,9 @@
 package capstone.android.project.com.capstoneproject;
 
+import android.annotation.TargetApi;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.icu.text.SimpleDateFormat;
 import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -49,7 +50,8 @@ public class AddtoListActivity extends AppCompatActivity {
         deal_saved = (TextView) findViewById(R.id.deal_saved);
         itemDeals = new Grocery();
         addItem.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.N)
+
+
             @Override
             public void onClick(View v) {
                 if (existingItem.getText().toString().isEmpty()) {

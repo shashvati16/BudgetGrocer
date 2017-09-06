@@ -47,14 +47,13 @@ public class StorePricesActivity extends AppCompatActivity{
                 @Override
                 public void onClick(View v) {
                     zip = zipCode.getText().toString();
-
-                    if(isOnline()) {
+                   if(isOnline()) {
                         URL url = RemoteEndPointUtil.buildLatLongURL(zip);
                         new FetchLocation().execute(url);
-                    }
-                    else {
-                        Toast.makeText(StorePricesActivity.this," No Internet Connection.", Toast.LENGTH_LONG).show();
-                    }
+                   }
+                   else {
+                      Toast.makeText(StorePricesActivity.this," No Internet Connection.", Toast.LENGTH_LONG).show();
+                   }
 
                 }
         });

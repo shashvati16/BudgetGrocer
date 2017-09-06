@@ -3,32 +3,16 @@ package capstone.android.project.com.capstoneproject;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
-import android.icu.text.SimpleDateFormat;
-import android.net.Uri;
-import android.os.Build;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
-import java.util.Calendar;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import capstone.android.project.com.capstoneproject.data.Deals;
 import capstone.android.project.com.capstoneproject.data.DealsContract;
-import capstone.android.project.com.capstoneproject.data.Grocery;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -52,7 +36,7 @@ public class GroceryListAdapter extends RecyclerView.Adapter<GroceryListAdapter.
 
         return new GroceryViewHolder(view);
     }
-    @RequiresApi(api = Build.VERSION_CODES.N)
+
     @Override
     public void onBindViewHolder(GroceryViewHolder holder, int position) {
 
