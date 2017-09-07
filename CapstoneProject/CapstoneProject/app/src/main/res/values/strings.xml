@@ -43,4 +43,7 @@
     <string name="signInCancel">Signed in canceled</string>
     <string name="saved">saved!</string>
     <string name="removed">removed!</string>
+    <string name="NoInternet">No Internet Connection</string>
+    <string name="startOfItemFragment">Starting Item Fragment</string>
+    <string name="endStorePricesActivity">end of StorePricesActivity</string>
 </resources>

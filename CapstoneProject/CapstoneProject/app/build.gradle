@@ -5,7 +5,7 @@ android {
         config {
             keyAlias 'udacity'
             keyPassword 'budgetgrocer'
-            storeFile file('C:/Users/Shashvati/AndroidStudioProjects/CapstoneProject/CapstoneProject/keystore.jks')
+            storeFile file('$rootDir/keystore.jks')
             storePassword 'budgetgrocer'
         }
     }

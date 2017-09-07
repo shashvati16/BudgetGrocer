@@ -53,7 +53,7 @@ public class StorePricesActivity extends AppCompatActivity{
                         new FetchLocation().execute(url);
                     }
                     else {
-                        Toast.makeText(StorePricesActivity.this," No Internet Connection.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(StorePricesActivity.this, getString(R.string.NoInternet), Toast.LENGTH_LONG).show();
                     }
 
                 }
@@ -94,7 +94,7 @@ public class StorePricesActivity extends AppCompatActivity{
             item.setItemUrl(dealURL.toString());
             item.setItemName(itemName);
             FragmentManager fragmentManager = getSupportFragmentManager();
-            Timber.i("Starting Item Fragment ",item);
+            Timber.i(getString(R.string.startOfItemFragment),item);
             fragmentManager.beginTransaction()
                     .add(R.id.deals_container,item)
                     .commit();
@@ -136,7 +136,7 @@ public class StorePricesActivity extends AppCompatActivity{
     public void onBackPressed() {
         Intent i = getIntent();
         setResult(RESULT_OK, i);
-        Timber.i("StorePricesActivity ended",i);
+        Timber.i(getString(R.string.endStorePricesActivity),i);
         finish();
     }
 }

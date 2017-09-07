@@ -17,6 +17,8 @@ import java.net.URL;
 import java.util.Iterator;
 import java.util.Scanner;
 
+import timber.log.Timber;
+
 import static com.facebook.login.widget.ProfilePictureView.TAG;
 
 /**
@@ -43,7 +45,7 @@ public class RemoteEndPointUtil {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        Log.v(TAG, "Built URI " + finalUrl);
+        Timber.v(TAG, "Built URI " + finalUrl);
         return finalUrl;
 
 
@@ -69,7 +71,7 @@ public class RemoteEndPointUtil {
         try {
             latLongURL = new URL("https://maps.googleapis.com/maps/api/geocode/json?address=" + zipCode);
         } catch (MalformedURLException ignored) {
-            Log.e(TAG, "Please check your internet connection.");
+            Timber.e(TAG, "Please check your internet connection.");
             return null;
         }
         return latLongURL;
