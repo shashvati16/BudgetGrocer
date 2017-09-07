@@ -113,45 +113,7 @@ public class DealsAdapter extends RecyclerView.Adapter<DealsAdapter.DealsAdapter
 
     }
 
-    private static String getDate(String dateStr) {
 
-        Calendar date = Calendar.getInstance();
-        int dow;
-        switch(dateStr){
-            case "Sunday":
-                dow = 1;
-                break;
-            case "Monday":
-                dow = 2;
-                break;
-            case "Tuesday":
-                dow = 3;
-                break;
-            case "Wednesday":
-                dow = 4;
-                break;
-            case "Thursday":
-                dow = 5;
-                break;
-            case "Friday":
-                dow = 6;
-                break;
-            case "Saturday":
-                dow = 7;
-                break;
-            default:
-                dow=0;
-                break;
-        }
-        int today = date.get(Calendar.DAY_OF_WEEK);
-        int diff = dow - today;
-        if (!(diff > 0)) {
-            diff += 7;
-        }
-        date.add(Calendar.DAY_OF_MONTH,diff);
-        String dateNext = date.get(Calendar.YEAR) + "-" + date.get(Calendar.MONTH) + "-" + date.get(Calendar.DATE);
-        return dateNext;
-    }
 
     @Override
     public int getItemCount() {
@@ -162,4 +124,8 @@ public class DealsAdapter extends RecyclerView.Adapter<DealsAdapter.DealsAdapter
             return mDeals.length;
         }
     }
+
+
+
+
 }

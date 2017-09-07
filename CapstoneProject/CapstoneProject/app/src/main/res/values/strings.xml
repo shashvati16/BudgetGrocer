@@ -19,7 +19,6 @@
         <item>qt</item>
     </string-array>
 
-
     <string name="product">Milk, 1% Lowfat</string>
     <string name="store">Kinney Drugs</string>
     <string name="price">$2.88</string>
@@ -30,7 +29,18 @@
     <string name="deals_saved">2 deals saved :</string>
     <string name="add">ADD</string>
     <string name="NoDeals">No deals Saved</string>
+    <string name="dealsSaved">Deals saved</string>
+    <string name="ItemNameNotEmpty">Item name cannot be empty</string>
+    <string name="added">added to Grocery List</string>
     <string name="clear">Clear</string>
     <string name="appwidget_text">Shopping List</string>
     <string name="add_widget">Add widget</string>
+    <string name="from">from</string>
+    <string name="expires">expires</string>
+    <string name="NoDealsfound">No deals found</string>
+    <string name="hi">hi</string>
+    <string name="signedIn">Signed in!</string>
+    <string name="signInCancel">Signed in canceled</string>
+    <string name="saved">saved!</string>
+    <string name="removed">removed!</string>
 </resources>

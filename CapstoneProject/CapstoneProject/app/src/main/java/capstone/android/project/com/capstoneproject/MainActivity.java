@@ -1,14 +1,12 @@
 package capstone.android.project.com.capstoneproject;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.LoaderManager;
-import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.AsyncTaskLoader;
 import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
@@ -16,7 +14,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
-import android.util.Log;
+
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -49,9 +47,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     private String mUsername;
     private RecyclerView shoppingList;
-    public Grocery[] groceryList;
-    public Cursor mCursor;
-    public Parcelable[] mGroceries;
     private GroceryListAdapter groceryListAdapter;
 
 
@@ -66,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
                     // User is signed in
-                    Toast.makeText(MainActivity.this, "Hi " + user.getDisplayName(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, getString(R.string.hi) + " " + user.getDisplayName(), Toast.LENGTH_SHORT).show();
                     Timber.i(user.getDisplayName() + "Signed in!", user);
 
 
@@ -152,12 +147,12 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == RC_SIGN_IN) {
             if (resultCode == RESULT_OK) {
-                Toast.makeText(this, "Signed in!", Toast.LENGTH_SHORT).show();
-                Timber.i("signed in",resultCode);
+                Toast.makeText(this, getString(R.string.signedIn), Toast.LENGTH_SHORT).show();
+                Timber.i(getString(R.string.signedIn),resultCode);
 
             } else if (resultCode == RESULT_CANCELED) {
-                Toast.makeText(this, "Signed in canceled", Toast.LENGTH_SHORT).show();
-                Timber.i("Signed in canceled",resultCode);
+                Toast.makeText(this, getString(R.string.signInCancel), Toast.LENGTH_SHORT).show();
+                Timber.i(getString(R.string.signInCancel),resultCode);
                 finish();
             }
         }

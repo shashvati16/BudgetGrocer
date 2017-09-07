@@ -1,9 +1,12 @@
 package capstone.android.project.com.capstoneproject;
+
 import android.content.Intent;
+
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.AsyncTaskLoader;
 import android.support.v4.content.Loader;
@@ -14,17 +17,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
-
 import capstone.android.project.com.capstoneproject.data.Deals;
 import timber.log.Timber;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class ItemFragment extends Fragment implements LoaderManager.LoaderCallbacks<Deals[]>, DealsAdapter.DealsAdapterCallback{
 
@@ -114,7 +116,7 @@ public class ItemFragment extends Fragment implements LoaderManager.LoaderCallba
 
                 Elements divs = page.getElementsByClass("deal-productname");
                 int size = divs.size();
-                if(size>1){
+                if(size>0){
                     itemDeals = new Deals[size];
                     for (int i = 0; i < size; i++) {
                         itemDeals[i] = new Deals();
@@ -126,11 +128,7 @@ public class ItemFragment extends Fragment implements LoaderManager.LoaderCallba
 
                     }
                 }
-                else{
-                    itemDeals = new Deals[1];
-                    itemDeals[0]=new Deals();
-                    itemDeals[0].setBrandItems("No deals found for " + itemName);
-                }
+
                 return itemDeals;
             }
 
@@ -141,18 +139,13 @@ public class ItemFragment extends Fragment implements LoaderManager.LoaderCallba
 
     @Override
     public void onLoadFinished(Loader<Deals[]> loader, Deals[] deals) {
-        if(deals.length>1 && deals[0].getBrandItems()=="No deals found for " + itemName){
-            itemInfo.setVisibility(View.VISIBLE);
-            itemInfo.setText(deals[0].getBrandItems());
-            itemInfo.setTextSize(30);
-            dealsRecycleView.setVisibility(View.GONE);
-        }
-        else {
+         if(itemDeals!=null){
             itemInfo.setVisibility(View.GONE);
             dealsAdapter = new DealsAdapter(getActivity(), deals, itemName, this);
             dealsRecycleView.setAdapter(dealsAdapter);
-
-
+        }
+        else {
+             itemInfo.setText(getString(R.string.NoDealsfound));
         }
     }
     @Override
@@ -181,12 +174,12 @@ public class ItemFragment extends Fragment implements LoaderManager.LoaderCallba
         if(isChecked==true){
             checkedDeal.setExpiryDate(getDate(checkedDeal.getExpiryDate()));
             savedDeals.add(checkedDeal);
-            Toast.makeText(getActivity(),checkedDeal.getBrandItems() + " saved!",Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(),checkedDeal.getBrandItems() + " " + getString(R.string.saved) ,Toast.LENGTH_LONG).show();
         }
         else {
             if(savedDeals.contains(checkedDeal)){
                 savedDeals.remove(checkedDeal);
-                Toast.makeText(getActivity(),checkedDeal.getBrandItems() + " removed!",Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(),checkedDeal.getBrandItems() + " " + getString(R.string.removed),Toast.LENGTH_LONG).show();
             }
 
         }

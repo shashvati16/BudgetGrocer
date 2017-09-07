@@ -1,14 +1,11 @@
 package capstone.android.project.com.capstoneproject;
 
-import android.annotation.TargetApi;
 import android.content.ContentValues;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Build;
-import android.support.annotation.RequiresApi;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -20,7 +17,6 @@ import android.widget.Toast;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 import capstone.android.project.com.capstoneproject.data.Deals;
 import capstone.android.project.com.capstoneproject.data.DealsContract;
@@ -50,12 +46,10 @@ public class AddtoListActivity extends AppCompatActivity {
         deal_saved = (TextView) findViewById(R.id.deal_saved);
         itemDeals = new Grocery();
         addItem.setOnClickListener(new View.OnClickListener() {
-
-
             @Override
             public void onClick(View v) {
                 if (existingItem.getText().toString().isEmpty()) {
-                    Toast.makeText(AddtoListActivity.this, "Item name can't be empty", Toast.LENGTH_LONG).show();
+                    Toast.makeText(AddtoListActivity.this, getString(R.string.ItemNameNotEmpty), Toast.LENGTH_LONG).show();
                 } else {
                     itemDeals.setItems(existingItem.getText().toString());
                     itemDeals.setQuantity(existingItemQty.getText().toString() + qty_unit.getSelectedItem());
@@ -81,8 +75,8 @@ public class AddtoListActivity extends AppCompatActivity {
                             }
                             Uri uri = getContentResolver().insert(DealsContract.DealEntry.CONTENT_URI, contentValues);
                             if(uri != null) {
-                                Toast.makeText(AddtoListActivity.this, itemDeals.getItem() + " added to Grocery List", Toast.LENGTH_LONG).show();
-                                Timber.i(itemDeals.getItem() + " added to Grocery List", itemDeals);
+                                Toast.makeText(AddtoListActivity.this, itemDeals.getItem() + " " + getString(R.string.added), Toast.LENGTH_LONG).show();
+                                Timber.i(itemDeals.getItem() + " " + getString(R.string.added), itemDeals);
                             }
                         }
                     }else {
@@ -92,8 +86,8 @@ public class AddtoListActivity extends AppCompatActivity {
                         Uri uri = getContentResolver().insert(DealsContract.DealEntry.CONTENT_URI, contentValues);
                         if(uri != null) {
 
-                            Toast.makeText(AddtoListActivity.this, itemDeals.getItem() + " added to Grocery List", Toast.LENGTH_LONG).show();
-                            Timber.i(itemDeals.getItem() + " added to Grocery List", itemDeals);
+                            Toast.makeText(AddtoListActivity.this, itemDeals.getItem() + " " + getString(R.string.added), Toast.LENGTH_LONG).show();
+                            Timber.i(itemDeals.getItem() + " " + getString(R.string.added), itemDeals);
                         }
                     }
                     Intent i = new Intent(AddtoListActivity.this, MainActivity.class);
@@ -129,12 +123,12 @@ public class AddtoListActivity extends AppCompatActivity {
                         saveDeals[i]=savedDeals.get(i);
                     }
                     itemDeals.setDeals(saveDeals);
-                    deal_saved.setText(saveDeals.length + " Deals saved" );
-                    Timber.i(saveDeals.length + " Deals saved",savedDeals);
+                    deal_saved.setText(saveDeals.length + " " + getString(R.string.dealsSaved));
+                    Timber.i(saveDeals.length + " " + getString(R.string.dealsSaved) ,savedDeals);
                 }
                 else {
-                    deal_saved.setText("0 Deals saved");
-                    Timber.i("No Deals saved",savedDeals);
+                    deal_saved.setText(getString(R.string.NoDeals));
+                    Timber.i(" " + getString(R.string.dealsSaved),savedDeals);
                 }
 
             }
