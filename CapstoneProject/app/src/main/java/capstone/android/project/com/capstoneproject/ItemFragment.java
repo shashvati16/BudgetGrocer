@@ -109,9 +109,7 @@ public class ItemFragment extends Fragment implements LoaderManager.LoaderCallba
                     if(isOnline()==true) {
                         page = Jsoup.connect(itemUrl).get();
                     }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+
                 if(page!=null) {
                     Elements divs = page.getElementsByClass("deal-productname");
                     int size = divs.size();
@@ -127,11 +125,13 @@ public class ItemFragment extends Fragment implements LoaderManager.LoaderCallba
 
                         }
                     }
-                } else{
-                    Toast.makeText(getActivity(),getString(R.string.appnotvalid),Toast.LENGTH_LONG).show();
+                }
+                    return itemDeals;
+                }catch (Exception e) {
+                    e.printStackTrace();
+                    return null;
                 }
 
-                return itemDeals;
             }
 
         };

@@ -58,8 +58,13 @@ public class GroceryListAdapter extends RecyclerView.Adapter<GroceryListAdapter.
         String price = mCursor.getString(priceIndex);
         String expDate = mCursor.getString(expDateIndex);
         SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy");
+        String expiry;
+        try {
 
-        String expiry = sdf.format(new Date(Long.parseLong(expDate)));
+            expiry = sdf.format(new Date(Long.parseLong(expDate)));
+        }catch (NumberFormatException e){
+            expiry = null;
+        }
 
         long id = mCursor.getLong(idIndex);
         SharedPreferences mySavedDeals = mContext.getSharedPreferences("MY SAVED DEALS",MODE_PRIVATE);
