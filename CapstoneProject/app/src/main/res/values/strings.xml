@@ -46,4 +46,5 @@
     <string name="NoInternet">No Internet Connection</string>
     <string name="startOfItemFragment">Starting Item Fragment</string>
     <string name="endStorePricesActivity">end of StorePricesActivity</string>
+    <string name="appnotvalid">This app cannot be used in your country</string>
 </resources>

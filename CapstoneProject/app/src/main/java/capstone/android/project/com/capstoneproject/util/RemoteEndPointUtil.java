@@ -1,32 +1,27 @@
 package capstone.android.project.com.capstoneproject.util;
 
 import android.net.Uri;
-import android.util.Log;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.json.JSONTokener;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Iterator;
 import java.util.Scanner;
 
 import timber.log.Timber;
 
-import static com.facebook.login.widget.ProfilePictureView.TAG;
 
 /**
  * Created by Shashvati on 8/16/2017.
  */
 
 public class RemoteEndPointUtil {
-
+    private static String TAG ="RemoteEndPointUtil.class";
     private static String BASE_URL = "https://www.mygrocerydeals.com/";
     public static String query="q";
     public static String suppliedLoc="supplied_location";

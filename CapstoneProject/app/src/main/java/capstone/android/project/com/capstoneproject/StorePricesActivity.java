@@ -1,10 +1,10 @@
 package capstone.android.project.com.capstoneproject;
-import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Build;
+import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -12,10 +12,11 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import org.json.JSONException;
+
 import java.io.IOException;
 import java.net.URL;
+import java.util.Locale;
 
-import capstone.android.project.com.capstoneproject.data.Deals;
 import capstone.android.project.com.capstoneproject.data.Grocery;
 import capstone.android.project.com.capstoneproject.util.RemoteEndPointUtil;
 import timber.log.Timber;
@@ -27,9 +28,9 @@ public class StorePricesActivity extends AppCompatActivity{
     private Button findDeals;
     private Grocery groceryItem;
     private int size;
-    private DealsAdapter mAdapter;
     private String itemName;
     private String zip;
+    private Locale locale;
 
 
 
@@ -40,17 +41,28 @@ public class StorePricesActivity extends AppCompatActivity{
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         zipCode = (EditText) findViewById(R.id.zipCode);
         findDeals = (Button) findViewById(R.id.find_deals);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            locale = this.getResources().getConfiguration().getLocales().get(0);
+        } else {
+            locale = getApplicationContext().getResources().getConfiguration().locale;
+        }
+
         Intent itemIntent=getIntent();
         groceryItem = itemIntent.getParcelableExtra("itemDeals");
         itemName = groceryItem.getItem();
+
         findDeals.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     zip = zipCode.getText().toString();
-
                     if(isOnline()) {
-                        URL url = RemoteEndPointUtil.buildLatLongURL(zip);
-                        new FetchLocation().execute(url);
+                        if(locale.getCountry().equals("US")){
+                            URL url = RemoteEndPointUtil.buildLatLongURL(zip);
+                            new FetchLocation().execute(url);
+                        }
+                        else {
+                            Toast.makeText(StorePricesActivity.this, getString(R.string.appnotvalid),Toast.LENGTH_LONG).show();
+                        }
                     }
                     else {
                         Toast.makeText(StorePricesActivity.this, getString(R.string.NoInternet), Toast.LENGTH_LONG).show();

@@ -1,12 +1,10 @@
 package capstone.android.project.com.capstoneproject;
 
 import android.content.Intent;
-
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.AsyncTaskLoader;
 import android.support.v4.content.Loader;
@@ -17,16 +15,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
+
 import capstone.android.project.com.capstoneproject.data.Deals;
 import timber.log.Timber;
-
-import static android.content.Context.MODE_PRIVATE;
 
 public class ItemFragment extends Fragment implements LoaderManager.LoaderCallbacks<Deals[]>, DealsAdapter.DealsAdapterCallback{
 
@@ -113,20 +112,23 @@ public class ItemFragment extends Fragment implements LoaderManager.LoaderCallba
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+                if(page!=null) {
+                    Elements divs = page.getElementsByClass("deal-productname");
+                    int size = divs.size();
+                    if (size > 0) {
+                        itemDeals = new Deals[size];
+                        for (int i = 0; i < size; i++) {
+                            itemDeals[i] = new Deals();
+                            itemDeals[i].setDealImgs(page.select("img.deal-productimg").get(i).absUrl("src"));
+                            itemDeals[i].setBrandItems(page.select("p.deal-productname").get(i).text());
+                            itemDeals[i].setStoreNames(page.select("p.deal-storename").get(i).text());
+                            itemDeals[i].setPrice(page.select("span.pricetag").get(i).text());
+                            itemDeals[i].setExpiryDate(page.select("div.expirydate").get(i).text().substring(5));
 
-                Elements divs = page.getElementsByClass("deal-productname");
-                int size = divs.size();
-                if(size>0){
-                    itemDeals = new Deals[size];
-                    for (int i = 0; i < size; i++) {
-                        itemDeals[i] = new Deals();
-                        itemDeals[i].setDealImgs(page.select("img.deal-productimg").get(i).absUrl("src"));
-                        itemDeals[i].setBrandItems(page.select("p.deal-productname").get(i).text());
-                        itemDeals[i].setStoreNames(page.select("p.deal-storename").get(i).text());
-                        itemDeals[i].setPrice(page.select("span.pricetag").get(i).text());
-                        itemDeals[i].setExpiryDate(page.select("div.expirydate").get(i).text().substring(5));
-
+                        }
                     }
+                } else{
+                    Toast.makeText(getActivity(),getString(R.string.appnotvalid),Toast.LENGTH_LONG).show();
                 }
 
                 return itemDeals;

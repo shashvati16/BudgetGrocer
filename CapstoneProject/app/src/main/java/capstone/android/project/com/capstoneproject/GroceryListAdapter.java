@@ -40,7 +40,6 @@ public class GroceryListAdapter extends RecyclerView.Adapter<GroceryListAdapter.
     @Override
     public void onBindViewHolder(GroceryViewHolder holder, int position) {
 
-
         int itemIndex = mCursor.getColumnIndex(DealsContract.DealEntry.COLUMN_DEAL_ITEM);
         int qtyIndex = mCursor.getColumnIndex(DealsContract.DealEntry.COLUMN_DEAL_QTY);
         int dealIndex = mCursor.getColumnIndex(DealsContract.DealEntry.COLUMN_DEAL_NAME);
@@ -59,6 +58,7 @@ public class GroceryListAdapter extends RecyclerView.Adapter<GroceryListAdapter.
         String price = mCursor.getString(priceIndex);
         String expDate = mCursor.getString(expDateIndex);
         SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy");
+
         String expiry = sdf.format(new Date(Long.parseLong(expDate)));
 
         long id = mCursor.getLong(idIndex);
@@ -69,8 +69,14 @@ public class GroceryListAdapter extends RecyclerView.Adapter<GroceryListAdapter.
 
         if(deal!=null) {
             holder.item.setText(deal);
-            holder.deal.setText(price + " " + mContext.getString(R.string.from) + " "
-                    + store + " " + mContext.getString(R.string.expires) + " " + expiry);
+            if(expiry!=null) {
+                holder.deal.setText(price + " " + mContext.getString(R.string.from) + " "
+                        + store + " " + mContext.getString(R.string.expires) + " " + expiry);
+            }
+            else{
+                holder.deal.setText(price + " " + mContext.getString(R.string.from) + " "
+                        + store);
+            }
         }
         else {
             holder.item.setText(item);
